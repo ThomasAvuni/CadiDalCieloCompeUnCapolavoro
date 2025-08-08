@@ -2,6 +2,7 @@
 #include <EnhancedInput/Public/EnhancedInputComponent.h>
 
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
 // Sets default values
@@ -9,14 +10,19 @@ AMainCharacter::AMainCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	bUseControllerRotationYaw = false;
+	GetCharacterMovement()->RotationRate = FRotator(0, 0, 500.f);
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	SpringArmComponent->SetupAttachment(RootComponent);
-	SpringArmComponent->TargetArmLength = 600.f;
+	SpringArmComponent->TargetArmLength = 450.f;
+	SpringArmComponent->bUsePawnControlRotation = true;
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComp");
 	CameraComponent->SetupAttachment(SpringArmComponent);
 	CameraComponent->FieldOfView = 70.f;
+
 }
 
 // Called when the game starts or when spawned
