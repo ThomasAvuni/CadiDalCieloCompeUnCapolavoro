@@ -11,7 +11,7 @@ AMainCharacter::AMainCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	bUseControllerRotationYaw = false;
-	GetCharacterMovement()->RotationRate = FRotator(0, 0, 500.f);
+	GetCharacterMovement()->RotationRate = FRotator(0, 500.f, 0.f);
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
@@ -22,7 +22,6 @@ AMainCharacter::AMainCharacter()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComp");
 	CameraComponent->SetupAttachment(SpringArmComponent);
 	CameraComponent->FieldOfView = 70.f;
-
 }
 
 // Called when the game starts or when spawned
@@ -48,7 +47,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMainCharacter::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMainCharacter::Look);
 	}
-
 }
 
 void AMainCharacter::Move(const FInputActionValue& Value)
