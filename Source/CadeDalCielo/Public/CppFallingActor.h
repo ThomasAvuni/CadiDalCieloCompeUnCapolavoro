@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "CppFallingActor.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnObjectCollected);
+
 UCLASS()
 class CADEDALCIELO_API ACppFallingActor : public AActor
 {
@@ -15,6 +17,9 @@ public:
 	// Sets default values for this actor's properties
 	ACppFallingActor();
 
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnObjectCollected OnObjectCollected;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

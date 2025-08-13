@@ -1,6 +1,7 @@
 #include "CadeDalCielo/Public/MainCharacter.h"
 #include <EnhancedInput/Public/EnhancedInputComponent.h>
 
+#include "CppFallingActor.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -28,7 +29,9 @@ AMainCharacter::AMainCharacter()
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
 }
+
 
 // Called every frame
 void AMainCharacter::Tick(float DeltaTime)

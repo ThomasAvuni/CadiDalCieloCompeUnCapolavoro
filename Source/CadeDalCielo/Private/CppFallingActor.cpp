@@ -15,6 +15,7 @@ ACppFallingActor::ACppFallingActor()
 	MeshComponent->SetCollisionEnabled(ECollisionEnabled::Type::QueryAndPhysics);
 	MeshComponent->SetCollisionObjectType(ECC_WorldDynamic);
 	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ACppFallingActor::OnComponentBeginOverlap);
+	MeshComponent->SetRelativeScale3D(FVector(0.6f));
 }
 
 // Called when the game starts or when spawned
@@ -27,6 +28,10 @@ void ACppFallingActor::BeginPlay()
 void ACppFallingActor::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+
+	OnObjectCollected.Broadcast();
+	
+	MeshComponent->SetSimulatePhysics(false);
 	Destroy();
 }
 
@@ -34,6 +39,5 @@ void ACppFallingActor::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedCo
 void ACppFallingActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 

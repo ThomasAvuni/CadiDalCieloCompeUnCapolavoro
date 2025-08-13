@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+class ACppFallingActor;
 class UCameraComponent;
 class USpringArmComponent;
 struct FInputActionValue;
@@ -39,7 +40,6 @@ public:
 	TObjectPtr<UCameraComponent> CameraComponent;
 
 
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -49,5 +49,5 @@ public:
 private:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
-	
+
 };
